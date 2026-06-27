@@ -354,6 +354,10 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
         .border-balera-blue { border-color: #003366; }
         .ring-balera-blue { --tw-ring-color: #003366; }
 
+        /* Busca um pouco mais larga apenas no desktop; no mobile permanece
+           fluida (w-full) para nao estourar/cortar em telas estreitas. */
+        @media (min-width: 768px) { .search-wide { min-width: 340px; } }
+
         /* ===== Otimizacoes de responsividade (mobile) =====
            Obs: o Tailwind embutido e pre-compilado/purgado, entao novos
            utilitarios (grid-cols-3, md:flex, sm:hidden) nao existem no CSS.
@@ -1225,7 +1229,9 @@ function App() {
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Palpites');
 
         const now = new Date();
-        const timestamp = now.toISOString().slice(0, 19).replace(/[-:T]/g, '').slice(0, 14);
+        // Aplica o horário de Brasília (UTC-3) ao timestamp do nome do arquivo.
+        const brasilia = new Date(now.getTime() - 3 * 60 * 60 * 1000);
+        const timestamp = brasilia.toISOString().slice(0, 19).replace(/[-:T]/g, '').slice(0, 14);
         XLSX.writeFile(workbook, `IMPORTAÇÃO_RANKING_BALERA_${timestamp}.xlsx`, { bookType: 'xlsx' });
     };
     useEffect(() => {
@@ -1281,7 +1287,7 @@ function App() {
                                 data.matches.length),
                             " jogos encerrados.")),
                     React.createElement("div", { className: "w-full md:w-auto flex flex-col md:flex-row items-stretch md:items-center gap-3 max-w-2xl" },
-                        React.createElement("div", { className: "relative flex-1" },
+                        React.createElement("div", { className: "relative flex-1 search-wide" },
                             React.createElement("div", { className: "absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" },
                                 React.createElement("i", { "data-lucide": "search", className: "h-5 w-5 text-slate-400" })),
                             React.createElement("input", { type: "text", className: "block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-md leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-1 ring-balera-blue border-balera-blue sm:text-sm transition-colors", placeholder: "Buscar colaborador pelo nome...", value: searchTerm, onChange: (e) => setSearchTerm(e.target.value) }),
