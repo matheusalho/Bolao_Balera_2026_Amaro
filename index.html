@@ -680,6 +680,142 @@ const DEFAULT_RULES = {
     topScorer: 10,
     mostGoalsTeam: 10
 };
+// CPFs oficiais por nome — usado na exportação da planilha de importação do ranking.
+const DEFAULT_CPF_BY_NAME = {
+    "Aléxia de Oliveira Costa Machado": "11601356730",
+    "Aline Cristina Dos Santos Almeida": "35594226800",
+    "Aline Priscila Eva Gomes": "34587915823",
+    "Amanda Bignardi": "11640636935",
+    "Amanda Lopes de Moura Gama": "06040407921",
+    "Amanda Maria Soares de Oliveira": "13104898901",
+    "Amanda Toledo": "10150928963",
+    "Amaro Silva": "05696236936",
+    "Amós Campos": "08794551952",
+    "Ana Beatriz Pestana Pereira": "11492284904",
+    "Ana Carolina Duarte": "44419735864",
+    "Ana Carolina Fulgêncio Villa Nova": "06939197958",
+    "Ana Carolina Gonçalves Rafael": "44864344809",
+    "Ana Clara Ribeiro": "15436468918",
+    "Ana Paula Ricci Fernanfes": "05768401903",
+    "Anderson Muniz": "42060337810",
+    "Ane Eliza Garcia Scarpeta": "09225398980",
+    "Anna Berg": "11529587980",
+    "Ayla Valotto": "11840813954",
+    "Bárbara Maestro Costa": "06404848910",
+    "Barbara Vitoria Nogueira Bento": "11925208907",
+    "Bruna Alves Pereira": "12488296970",
+    "Bruno Fazzolo": "43844981870",
+    "Bruno Ishida": "12590109962",
+    "Bruno Nicoleti Messias": "07563147985",
+    "Caio Barduco": "10758567952",
+    "Camila Bueno Romão": "48407301809",
+    "Caroline Correia": "08832974932",
+    "Caroline Duccini de Jesud": "06698214973",
+    "Caroline Rubio": "10501144935",
+    "Bruno Caviqui": "48822810821",
+    "Christian Bittencourt Scherrer": "11245709933",
+    "Daiane Martins Barboza": "06760447948",
+    "Daniel Monteiro França Abreu": "16694991703",
+    "Danielly Otilio Farias": "12746747944",
+    "Danilo Gustavo Delecrode": "01049096924",
+    "David Camargo": "14857768992",
+    "Diego Imes": "08603188939",
+    "Diogo Berbel": "04183575958",
+    "Eduarda Borracha": "11250149975",
+    "Emanuele Okano de Melo Longo": "08658772977",
+    "Emanuelle Caroline da Silva": "11322485909",
+    "Ezequiel Monteiro": "12006563939",
+    "Fábio Antonio Da Silva Martin": "87995271972",
+    "Felipe Jim Mizuno": "04383437940",
+    "Fernanda Ferber Severino Gesualdo": "32002543860",
+    "Fernanda Manzini Pedroso de Almeida": "07222675922",
+    "Filipe Rodrigues de Carvalho": "08597265922",
+    "Gabriel Arthur Souza Vieira": "12100983938",
+    "Gabriel Sorace Ueda": "10110442938",
+    "Gabriela Violato Bueno": "14337285911",
+    "Gabriele Fialho Ramos": "10967226902",
+    "Giovana Do Amaral Silva Aranha": "12077419903",
+    "Giovanna Lima Moreti": "08249546962",
+    "Giovanni Bernardino": "12666686914",
+    "Grazielle da Silva Dos Santos": "49006211885",
+    "Greice Keli Alves da Silva": "08373844945",
+    "Gustavo Alexandre Dal Col Figar": "12006333933",
+    "Gustavo Mitne": "05346651950",
+    "Heber Wedemann": "11684620708",
+    "Hellen Lima Velozo": "36113294870",
+    "Henrique Noda": "10466977905",
+    "Henrique Pinho de Sousa Cruz": "97985481249",
+    "Isabela Costa": "12588439942",
+    "Isabela Tatiane de Souza Teixeira": "09826348970",
+    "Isabelle Soares Silva": "08290291922",
+    "Jaqueline Lie Kato": "12669525946",
+    "Jenniffer Stefany Dos Reis Mançan": "39548990865",
+    "Jhoanttan Henrique Soares": "14357396980",
+    "João Pedro Rocha Troya": "54340288802",
+    "João Pedro Santana Santos": "11465746900",
+    "Joao Vitor Amaro da Silva": "13434697918",
+    "João Vitor Costa Silva": "09881596947",
+    "Jose Rocha Jr": "03207570305",
+    "Julia Almeida Pedreira": "52277511889",
+    "Júlia Ludovico": "14189144959",
+    "Kalleb": "70656197102",
+    "Laila Frazão Araujo Chaves": "12439430765",
+    "Laís Lopes Francelino": "45044812862",
+    "Larissa Faria": "08407332917",
+    "Larissa Galetti Arcoleze": "07741206907",
+    "Laura Tadorov": "39947237877",
+    "Leonardo Miguel de Paula": "45877331809",
+    "Leticia Carolina Oliveira": "11689756977",
+    "Leticia Caviquioli": "44993998821",
+    "Leticia Izzo": "04699968970",
+    "Letícia Kellen Bueno": "04421262986",
+    "Letícia Oliveira Silva": "51769112804",
+    "Liliane Jia Ye Wu": "47156676814",
+    "Lohaine Vitoria de Souza Medeiros": "12847052933",
+    "Lorayne Sant'Anna": "34858201805",
+    "Lucas Cinesi Fernandes Pinto": "06365466919",
+    "Lucas de Oliveira Silva": "47074161870",
+    "Lucas Henrique Rosa": "08848010989",
+    "Lucas Miguel Dias Carneiro": "05973477940",
+    "Lucas Rodrigues de Almeida": "10627736912",
+    "Luiane Selina Nogueira Ferrari": "43639092856",
+    "Luiz Ferreira da Silva Neto": "11879975955",
+    "Manuela Tucunduva": "28808396886",
+    "Marcela Fabri": "08373792961",
+    "Maria Eduarda Camargo Coco": "13549759959",
+    "Mateus Amaral": "14526879940",
+    "Matheus Gasparino Alho": "09400967900",
+    "Mayara de Oliveira Silva": "42703258879",
+    "Michele Adriane Rezende Frederick": "08028975925",
+    "Micheli Yukie Nomura": "06298015922",
+    "Miguel José Santana Junior": "06763918933",
+    "Milena Ribeiro Garrido": "47496640816",
+    "Murilo": "11493253999",
+    "Nathália Bozzola": "45558608889",
+    "Paloma de Araújo Duarte": "11265589666",
+    "Patrícia Ciconatto": "08916038910",
+    "Paulo Biz": "08796362979",
+    "Pedro Henrique Cury Martineli": "08249519990",
+    "Pedro Luís Moura Zanin": "10461915944",
+    "Rafael Aguiar Camacho": "04607527904",
+    "Rafael Ujvari": "39069609860",
+    "Raul Domingos": "11960439650",
+    "Renata Medina Duarte": "42164611829",
+    "Renato Tonini": "05737091732",
+    "Ricardo Henrique de Oliveira": "12710975912",
+    "Rodrigo Haji": "03382226936",
+    "Rogério Batista de Moura Junior": "10793555965",
+    "Taís Sacramento": "86428583542",
+    "Taline Cristiny Barbosa Ribeiro": "12609892918",
+    "Thalita de Paiva Omena": "45141181847",
+    "Thalita Mikaela Melo Luiz": "12404836943",
+    "Thiago Nonato": "38005685866",
+    "Tiago Pirani": "11747352950",
+    "Vinícius Sorace Ueda": "04567815955",
+    "Vinicius Volpato Silva": "08244495928",
+    "Vitória Gabriely da Silva": "07471869950",
+    "Yasmin Gabrielly Sarabia": "11088390960"
+};
 // Resultados reais pré-carregados (Copa 2026) — 66 jogos encerrados até 18:00 (Brasília) de 27/06/2026. Faltam apenas os 6 jogos da 3ª rodada dos Grupos J, K e L (27/06, após o corte).
 const INITIAL_REAL_RESULTS = {
     "México x África do Sul": { home: 2, away: 0 },
@@ -802,6 +938,7 @@ const parseCSVText = (csvText) => {
     const headers = rows[headerRowIdx];
     const artilheiroIdx = headers.findIndex(h => h && h.trim().toLowerCase() === 'artilheiro');
     const timeGolsIdx = headers.findIndex(h => h && h.trim().toLowerCase() === 'time com mais gols');
+    const cpfIdx = headers.findIndex(h => h && h.trim().toLowerCase() === 'cpf');
     const matchCols = [];
     for (let j = 0; j < headers.length; j++) {
         const h = headers[j];
@@ -820,6 +957,7 @@ const parseCSVText = (csvText) => {
         const name = (_a = currentRow[nameColIdx]) === null || _a === void 0 ? void 0 : _a.trim();
         if (!name)
             continue;
+        const cpf = cpfIdx !== -1 ? ((currentRow[cpfIdx] || '').toString().replace(/\D/g, '')) : (DEFAULT_CPF_BY_NAME[name] || '');
         const extraGuesses = {
             artilheiro: artilheiroIdx !== -1 ? (_b = currentRow[artilheiroIdx]) === null || _b === void 0 ? void 0 : _b.trim() : '',
             timeMaisGols: timeGolsIdx !== -1 ? (_c = currentRow[timeGolsIdx]) === null || _c === void 0 ? void 0 : _c.trim() : ''
@@ -834,7 +972,7 @@ const parseCSVText = (csvText) => {
                 }
             }
         });
-        participants.push({ name, guesses, extraGuesses });
+        participants.push({ name, cpf, guesses, extraGuesses });
     }
     return { matches, participants };
 };
@@ -969,7 +1107,7 @@ function App() {
     const ranking = useMemo(() => {
         const calculated = data.participants.map(p => {
             let totalPoints = 0;
-            let stats = { exact: 0, winner: 0, processedMatches: 0, bonusArtilheiro: 0, bonusTime: 0 };
+            let stats = { exact: 0, winner: 0, processedMatches: 0, jogosPoints: 0, bonusArtilheiro: 0, bonusTime: 0 };
             data.matches.forEach(match => {
                 const real = realResults[match];
                 const guess = p.guesses[match];
@@ -978,6 +1116,7 @@ function App() {
                     if (guess) {
                         const result = calculatePointDetails(guess, real);
                         totalPoints += result.pts;
+                        stats.jogosPoints += result.pts;
                         if (result.type === 'exact')
                             stats.exact++;
                         if (result.type === 'winner')
@@ -1042,6 +1181,53 @@ function App() {
             setActiveTab('upload');
         }
     };
+    const handleExportRanking = () => {
+        if (!window.XLSX) {
+            alert("A biblioteca SheetJS/XLSX não foi carregada. Verifique sua conexão com a internet e tente novamente.");
+            return;
+        }
+        if (!ranking || ranking.length === 0) {
+            alert("Não há participantes para exportar.");
+            return;
+        }
+
+        const headers = ['cpf', 'jogos', 'seleçãocommaisgols', 'artilheiro', 'totalpontos'];
+        const exportRows = ranking.map((p) => {
+            const cpf = ((p.cpf || DEFAULT_CPF_BY_NAME[p.name] || '') + '').replace(/\D/g, '');
+            const jogos = Number((p.stats && p.stats.jogosPoints) || 0);
+            const selecaoComMaisGols = Number((p.stats && p.stats.bonusTime) || 0);
+            const artilheiro = Number((p.stats && p.stats.bonusArtilheiro) || 0);
+            const totalPontos = Number(p.totalPoints || 0);
+            return [cpf, jogos, selecaoComMaisGols, artilheiro, totalPontos];
+        });
+
+        const worksheet = XLSX.utils.aoa_to_sheet([headers, ...exportRows]);
+
+        // Mantém a estrutura visual da planilha-modelo anexada.
+        worksheet['!cols'] = [
+            { wch: 12 },
+            { wch: 5.85546875 },
+            { wch: 21.5703125 },
+            { wch: 9.140625 },
+            { wch: 11.5703125 }
+        ];
+
+        // Força a coluna CPF como texto para preservar CPFs iniciados por zero.
+        for (let rowIndex = 2; rowIndex <= exportRows.length + 1; rowIndex++) {
+            const cellRef = `A${rowIndex}`;
+            if (worksheet[cellRef]) {
+                worksheet[cellRef].t = 's';
+                worksheet[cellRef].z = '@';
+            }
+        }
+
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Palpites');
+
+        const now = new Date();
+        const timestamp = now.toISOString().slice(0, 19).replace(/[-:T]/g, '').slice(0, 14);
+        XLSX.writeFile(workbook, `IMPORTAÇÃO_RANKING_BALERA_${timestamp}.xlsx`, { bookType: 'xlsx' });
+    };
     useEffect(() => {
         if (window.lucide)
             window.lucide.createIcons();
@@ -1094,12 +1280,16 @@ function App() {
                                 " de ",
                                 data.matches.length),
                             " jogos encerrados.")),
-                    React.createElement("div", { className: "w-full md:w-auto flex-1 max-w-md relative" },
-                        React.createElement("div", { className: "absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" },
-                            React.createElement("i", { "data-lucide": "search", className: "h-5 w-5 text-slate-400" })),
-                        React.createElement("input", { type: "text", className: "block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-md leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-1 ring-balera-blue border-balera-blue sm:text-sm transition-colors", placeholder: "Buscar colaborador pelo nome...", value: searchTerm, onChange: (e) => setSearchTerm(e.target.value) }),
-                        searchTerm && (React.createElement("button", { onClick: () => setSearchTerm(''), className: "absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600" },
-                            React.createElement("i", { "data-lucide": "x", className: "h-4 w-4" }))))),
+                    React.createElement("div", { className: "w-full md:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:max-w-2xl" },
+                        React.createElement("div", { className: "relative flex-1 min-w-[200px]" },
+                            React.createElement("div", { className: "absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" },
+                                React.createElement("i", { "data-lucide": "search", className: "h-5 w-5 text-slate-400" })),
+                            React.createElement("input", { type: "text", className: "block w-full pl-10 pr-3 py-2 border border-slate-300 rounded-md leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-1 ring-balera-blue border-balera-blue sm:text-sm transition-colors", placeholder: "Buscar colaborador pelo nome...", value: searchTerm, onChange: (e) => setSearchTerm(e.target.value) }),
+                            searchTerm && (React.createElement("button", { onClick: () => setSearchTerm(''), className: "absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600" },
+                                React.createElement("i", { "data-lucide": "x", className: "h-4 w-4" })))),
+                        React.createElement("button", { onClick: handleExportRanking, className: "inline-flex justify-center items-center gap-2 bg-[#D4AF37] hover:bg-[#c19b2e] text-white font-bold px-4 py-2 rounded-md shadow-sm transition-colors whitespace-nowrap border border-[#c19b2e]", title: "Exportar o ranking atual no layout da planilha de importação anexada" },
+                            React.createElement("i", { "data-lucide": "download", className: "w-4 h-4" }),
+                            "Exportar Excel"))),
                 React.createElement("div", { ref: rankingScrollRef, className: "overflow-x-auto ranking-scroll" + (isMobileView ? " ranking-fit" : "") },
                     React.createElement("table", { className: "w-full text-left border-collapse whitespace-nowrap ranking-table" },
                         React.createElement("thead", null,
