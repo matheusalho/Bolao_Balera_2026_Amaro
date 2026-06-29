@@ -338,7 +338,7 @@ lucide.createIcons({icons});\``);if(typeof c>"u")throw new Error("`createIcons()
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
     <style>
-        body { background-color: #f1f5f9; font-family: 'Inter', system-ui, sans-serif; }
+        body { background-color: #f1f5f9; font-family: 'Segoe UI', 'Inter', system-ui, sans-serif; }
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: #f8fafc; }
         ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
@@ -1211,7 +1211,16 @@ function App() {
         }
 
         const headers = ['cpf', 'jogos', 'seleçãocommaisgols', 'artilheiro', 'totalpontos'];
-        const exportRows = ranking.map((p) => {
+        // A planilha-modelo de importação lista os participantes na ordem da fonte de
+        // dados (CSV), não na ordem do ranking por pontos exibido na tela. Reordena uma
+        // cópia do ranking para a ordem original dos participantes antes de exportar.
+        const sourceOrder = new Map((data.participants || []).map((p, i) => [p.name, i]));
+        const exportSource = [...ranking].sort((a, b) => {
+            const ia = sourceOrder.has(a.name) ? sourceOrder.get(a.name) : 0;
+            const ib = sourceOrder.has(b.name) ? sourceOrder.get(b.name) : 0;
+            return ia - ib;
+        });
+        const exportRows = exportSource.map((p) => {
             const cpf = ((p.cpf || DEFAULT_CPF_BY_NAME[p.name] || '') + '').replace(/\D/g, '');
             const jogos = Number((p.stats && p.stats.jogosPoints) || 0);
             const selecaoComMaisGols = Number((p.stats && p.stats.bonusTime) || 0);
@@ -1222,21 +1231,25 @@ function App() {
 
         const worksheet = XLSX.utils.aoa_to_sheet([headers, ...exportRows]);
 
-        // Mantém a estrutura visual da planilha-modelo anexada.
+        // Mantém a estrutura visual da planilha-modelo anexada. Usa `width`+`customWidth`
+        // (largura exata do OOXML) em vez de `wch`, pois o SheetJS trata `wch` como
+        // contagem de caracteres e soma um padding (~0,83), o que deixaria as colunas
+        // ligeiramente mais largas que a planilha-modelo.
         worksheet['!cols'] = [
-            { wch: 12 },
-            { wch: 5.85546875 },
-            { wch: 21.5703125 },
-            { wch: 9.140625 },
-            { wch: 11.5703125 }
+            { width: 12, customWidth: 1 },
+            { width: 5.85546875, customWidth: 1 },
+            { width: 21.5703125, customWidth: 1 },
+            { width: 9.140625, customWidth: 1 },
+            { width: 11.5703125, customWidth: 1 }
         ];
 
-        // Força a coluna CPF como texto para preservar CPFs iniciados por zero.
+        // Força a coluna CPF como texto (tipo string) para preservar CPFs iniciados por
+        // zero. Mantém o formato numérico "General" (como na planilha-modelo) — a célula
+        // ser do tipo texto já garante a preservação dos zeros à esquerda.
         for (let rowIndex = 2; rowIndex <= exportRows.length + 1; rowIndex++) {
             const cellRef = `A${rowIndex}`;
             if (worksheet[cellRef]) {
                 worksheet[cellRef].t = 's';
-                worksheet[cellRef].z = '@';
             }
         }
 
